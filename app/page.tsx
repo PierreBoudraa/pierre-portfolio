@@ -1,69 +1,206 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
+const shippedProjects = [
+  {
+    number: "01",
+    name: "Chronomètre",
+    stack: "Next.js · React · TypeScript",
+    description: "Chrono avec tours (laps), gestion d'état temps réel via hooks React.",
+    url: "https://mon-projet-snowy-alpha.vercel.app/",
+    screenshot: "/screenshots/Chronomètre.png",
+  },
+  {
+    number: "02",
+    name: "Calculatrice",
+    stack: "Next.js · React · TypeScript",
+    description: "Calculatrice fidèle à une app native, logique de calcul en chaîne.",
+    url: "https://calculator-app-woad-chi.vercel.app/",
+    screenshot: "/screenshots/Calculatrice.png",
+  },
+  {
+    number: "03",
+    name: "Snake (PICO-8)",
+    stack: "Next.js · React · TypeScript",
+    description: "Boucle de jeu, détection de collisions, direction artistique rétro pixel-art.",
+    url: "https://snake-game-ebon-phi.vercel.app/",
+    screenshot: "/screenshots/SnakeGame.png",
+  },
+  {
+    number: "04",
+    name: "Space Invaders",
+    stack: "Next.js · React · TypeScript",
+    description: "Vagues infinies, 3 classes d'ennemis, boucle de jeu 60 FPS, gestion refs/state.",
+    url: "https://space-invaders-tau-seven.vercel.app/",
+    screenshot: "/screenshots/SpaceInvaders.png",
+  },
+];
+
+const roadmap = [
+  { date: "Bientôt", title: "Pacman", note: "Labyrinthe, IA de poursuite des fantômes." },
+  { date: "Bientôt", title: "Mario-like", note: "Physique, gravité, collisions de plateforme." },
+  { date: "À venir", title: "Détection d'objets", note: "Modèle vision (YOLO) connecté à une interface web." },
+  { date: "À venir", title: "Agent IA", note: "Agent avec accès à des outils (recherche, calcul)." },
+  { date: "À venir", title: "Mini-SaaS", note: "Un vrai produit, lancé et testé auprès d'utilisateurs." },
+];
+
+const stack = [
+  "Next.js", "React", "TypeScript", "Tailwind CSS", "Python", "C", "C#", "SQL", "FastAPI", "Git", "Vercel",
+];
+
 export default function Home() {
+  const [typedText, setTypedText] = useState("");
+  const fullText = "étudiant en ingénierie Data & IA";
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i <= fullText.length) {
+        setTypedText(fullText.slice(0, i));
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 45);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <main className="min-h-screen text-[#f3efe6]" style={{ fontFamily: "var(--font-display)" }}>
+      <div className="max-w-3xl mx-auto px-6">
+        {/* Navigation */}
+        <nav className="flex justify-between items-center py-8">
+  <span className="text-lg font-medium">Pierre BOUDRAÂ</span>
+  <div className="flex gap-6 text-sm" style={{ fontFamily: "var(--font-mono)" }}>
+    <a href="https://github.com/PierreBoudraa" target="_blank" rel="noopener noreferrer" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/pierre-boudraa-783534326" target="_blank" rel="noopener noreferrer" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
+      LinkedIn
+    </a>
+    <a href="mailto:pboudraa81@gmail.com" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
+  pboudraa81@gmail.com
+</a>
+  </div>
+</nav>
+
+        {/* Hero */}
+        <section className="py-20">
+          <h1 className="text-4xl md:text-5xl font-medium leading-tight mb-6">
+            Mon portfolio
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg text-[#8b8a99] max-w-md mb-6">
+            J&apos;apprends en travaillant sur un projet à la fois, je suis actuellement{" "}
+            <span className="text-[#f3efe6]">{typedText}</span>
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        </section>
+
+        {/* Projets déployés */}
+        <section className="py-16 border-t border-[#2a2a38]">
+          <p
+            className="text-sm text-[#59d9c4] mb-8"
+            style={{ fontFamily: "var(--font-mono)" }}
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Projets déployés : {shippedProjects.length}
+          </p>
+
+          <div className="flex flex-col">
+            {shippedProjects.map((project) => (
+              
+              <a
+                key={project.number}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-6 py-6 border-b border-[#2a2a38] hover:bg-[#1b1b26] transition-colors px-2 -mx-2 rounded"
+              >
+                <span
+                  className="text-sm text-[#8b8a99] pt-1"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {project.number}
+                </span>
+                <div className="relative w-28 h-20 shrink-0 rounded overflow-hidden bg-[#1b1b26] border border-[#2a2a38]">
+                  <Image
+                    src={project.screenshot}
+                    alt={`Aperçu du projet ${project.name}`}
+                    fill
+                    sizes="112px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="text-xl font-medium group-hover:text-[#ffb400] transition-colors">
+                      {project.name}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-[#8b8a99] mb-2">{project.description}</p>
+                  <p
+                    className="text-xs text-[#59d9c4]"
+                    style={{ fontFamily: "var(--font-mono)" }}
+                  >
+                    {project.stack}
+                  </p>
+                </div>
+                <span className="text-[#8b8a99] group-hover:text-[#ffb400] transition-colors pt-1">
+                  Voir
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* Roadmap */}
+        <section className="py-16 border-t border-[#2a2a38]">
+          <p
+            className="text-sm text-[#ffb400] mb-8"
+            style={{ fontFamily: "var(--font-mono)" }}
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Projets à venir :
+          </p>
+
+          <div className="flex flex-col gap-6">
+            {roadmap.map((item, i) => (
+              <div key={i} className="flex items-start gap-6">
+                <span
+                  className="text-xs text-[#8b8a99] pt-1 w-16 shrink-0"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {item.date}
+                </span>
+                <div>
+                  <h4 className="text-base font-medium mb-1">{item.title}</h4>
+                  <p className="text-sm text-[#8b8a99]">{item.note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Stack */}
+        <section className="py-16 border-t border-[#2a2a38]">
+          <p
+            className="text-sm text-[#8b8a99] mb-6"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            Compétences techniques : 
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {stack.map((tech) => (
+              <span
+                key={tech}
+                className="text-sm px-3 py-1.5 bg-[#1b1b26] rounded text-[#f3efe6]"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
