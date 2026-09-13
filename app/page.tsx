@@ -42,7 +42,7 @@ const shippedProjects = [
     stack: "Next.js · React · TypeScript",
     description: "Génération procédurale de labyrinthe (DFS + braiding + symétrie miroir), IA de poursuite, power pellets.",
     url: "https://pacman-game-orpin.vercel.app/",
-    screenshot: "/screenshots/pacman.png",
+    screenshot: "/screenshots/PacmanGame.png",
   },
 ];
 
