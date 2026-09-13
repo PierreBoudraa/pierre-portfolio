@@ -36,10 +36,17 @@ const shippedProjects = [
     url: "https://space-invaders-tau-seven.vercel.app/",
     screenshot: "/screenshots/SpaceInvaders.png",
   },
+  {
+    number: "05",
+    name: "Pacman",
+    stack: "Next.js · React · TypeScript",
+    description: "Génération procédurale de labyrinthe (DFS + braiding + symétrie miroir), IA de poursuite, power pellets.",
+    url: "https://pacman-game-orpin.vercel.app/",
+    screenshot: "/screenshots/pacman.png",
+  },
 ];
 
 const roadmap = [
-  { date: "Bientôt", title: "Pacman", note: "Labyrinthe, IA de poursuite des fantômes." },
   { date: "Bientôt", title: "Mario-like", note: "Physique, gravité, collisions de plateforme." },
   { date: "À venir", title: "Détection d'objets", note: "Modèle vision (YOLO) connecté à une interface web." },
   { date: "À venir", title: "Agent IA", note: "Agent avec accès à des outils (recherche, calcul)." },
