@@ -44,10 +44,17 @@ const shippedProjects = [
     url: "https://pacman-game-orpin.vercel.app/",
     screenshot: "/screenshots/PacmanGame.png",
   },
+  {
+    number: "06",
+    name: "Mario",
+    stack: "Next.js · React · TypeScript",
+    description: "Jeu de plateforme à 3 niveaux, moteur physique (gravité/vélocité), ennemis, drapeau d'arrivée.",
+    url: "https://mario-game-chi-hazel.vercel.app/",
+    screenshot: "/screenshots/MarioGame.png",
+  },
 ];
 
 const roadmap = [
-  { date: "Bientôt", title: "Mario-like", note: "Physique, gravité, collisions de plateforme." },
   { date: "À venir", title: "Détection d'objets", note: "Modèle vision (YOLO) connecté à une interface web." },
   { date: "À venir", title: "Agent IA", note: "Agent avec accès à des outils (recherche, calcul)." },
   { date: "À venir", title: "Mini-SaaS", note: "Un vrai produit, lancé et testé auprès d'utilisateurs." },
