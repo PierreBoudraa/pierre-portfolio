@@ -3,7 +3,17 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const shippedProjects = [
+type ShippedProject = {
+  number: string;
+  name: string;
+  stack: string;
+  description: string;
+  url: string;
+  sourceUrl?: string;
+  screenshot: string;
+};
+
+const shippedProjects: ShippedProject[] = [
   {
     number: "01",
     name: "Chronomètre",
@@ -51,6 +61,15 @@ const shippedProjects = [
     description: "Jeu de plateforme à 3 niveaux, moteur physique (gravité/vélocité), ennemis, drapeau d'arrivée.",
     url: "https://mario-game-chi-hazel.vercel.app/",
     screenshot: "/screenshots/MarioGame.png",
+  },
+  {
+    number: "07",
+    name: "LivInParisDemo",
+    stack: "Next.js · React · TypeScript",
+    description: "Démo interactive : calcul d'itinéraire (Dijkstra) sur le réseau de métro parisien et dashboard de statistiques clients avec filtres, portés depuis le projet C# original.",
+    url: "https://livinparis-demo.vercel.app/",
+    sourceUrl: "https://github.com/PierreBoudraa/LivInParis",
+    screenshot: "/screenshots/LivInParis.png",
   },
 ];
 
@@ -122,12 +141,8 @@ export default function Home() {
 
           <div className="flex flex-col">
             {shippedProjects.map((project) => (
-              
-              <a
+              <div
                 key={project.number}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="group flex items-start gap-6 py-6 border-b border-[#2a2a38] hover:bg-[#1b1b26] transition-colors px-2 -mx-2 rounded"
               >
                 <span
@@ -159,10 +174,27 @@ export default function Home() {
                     {project.stack}
                   </p>
                 </div>
-                <span className="text-[#8b8a99] group-hover:text-[#ffb400] transition-colors pt-1">
-                  Voir
-                </span>
-              </a>
+                <div className="flex flex-col gap-1 items-end pt-1 shrink-0">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8b8a99] hover:text-[#ffb400] transition-colors text-sm"
+                  >
+                    Démo
+                  </a>
+                  {project.sourceUrl && (
+                    <a
+                      href={project.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#8b8a99] hover:text-[#ffb400] transition-colors text-sm"
+                    >
+                      Code
+                    </a>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </section>
