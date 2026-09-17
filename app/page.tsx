@@ -44,7 +44,7 @@ const shippedProjects: ShippedProject[] = [
     stack: "Next.js · React · TypeScript",
     description: "Vagues infinies, 3 classes d'ennemis, boucle de jeu 60 FPS, gestion refs/state.",
     url: "https://space-invaders-tau-seven.vercel.app/",
-    screenshot: "/screenshots/SpaceInvaders.png",
+    screenshot: "/screenshots/SpaceInvader.png",
   },
   {
     number: "05",
