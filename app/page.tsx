@@ -90,6 +90,15 @@ const shippedProjects: ShippedProject[] = [
     isCodeOnly: true,
     screenshot: "/screenshots/alterdune.png",
   },
+  {
+    number: "10",
+    name: "Ultimate Tic-Tac-Toe — Moteur C++ & IA",
+    stack: "C++ · Python · PyTorch · pybind11",
+    description: "Moteur de jeu en bitboards, générateur de données par exploration exhaustive, réseau de neurones (PyTorch) réimplémenté à la main en C++ pour l'inférence, exposé à Python via pybind11.",
+    url: "https://github.com/PierreBoudraa/ultimate-tictactoe",
+    isCodeOnly: true,
+    screenshot: "/screenshots/ultimate-tictactoe.png",
+  },
 ];
 
 const roadmap = [
