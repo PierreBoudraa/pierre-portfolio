@@ -10,6 +10,7 @@ type ShippedProject = {
   description: string;
   url: string;
   sourceUrl?: string;
+  isCodeOnly?: boolean;
   screenshot: string;
 };
 
@@ -70,6 +71,15 @@ const shippedProjects: ShippedProject[] = [
     url: "https://livinparis-demo.vercel.app/",
     sourceUrl: "https://github.com/PierreBoudraa/LivInParis",
     screenshot: "/screenshots/LivInParis.png",
+  },
+  {
+    number: "08",
+    name: "Prédiction Ligue 1 - Machine Learning",
+    stack: "Python · scikit-learn · pandas",
+    description: "Pipeline ML prédisant les résultats de Ligue 1 : rating Elo, features de forme récente, ensemble de modèles (Random Forest, HistGradientBoosting, Logistic Regression) validés par TimeSeriesSplit.",
+    url: "https://github.com/PierreBoudraa/ligue1-prediction",
+    isCodeOnly: true,
+    screenshot: "/screenshots/ligue1-prediction.png",
   },
 ];
 
@@ -181,7 +191,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="text-[#8b8a99] hover:text-[#ffb400] transition-colors text-sm"
                   >
-                    Démo
+                    {project.isCodeOnly ? "Code" : "Démo"}
                   </a>
                   {project.sourceUrl && (
                     <a
