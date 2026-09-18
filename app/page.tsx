@@ -81,6 +81,15 @@ const shippedProjects: ShippedProject[] = [
     isCodeOnly: true,
     screenshot: "/screenshots/ligue1-prediction.png",
   },
+  {
+    number: "09",
+    name: "ALTERDUNE - RPG tour par tour",
+    stack: "C++ · Programmation orientée objet",
+    description: "RPG console inspiré d'Undertale : système de combat FIGHT/ACT/ITEM/MERCY, bestiaire, contenu piloté par fichiers CSV (monstres, items, actions).",
+    url: "https://github.com/PierreBoudraa/alterdune-rpg",
+    isCodeOnly: true,
+    screenshot: "/screenshots/alterdune.png",
+  },
 ];
 
 const roadmap = [
