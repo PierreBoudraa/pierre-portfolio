@@ -106,7 +106,7 @@ const shippedProjects: ShippedProject[] = [
     description: "Démo web interactive du jeu de mots Boggle : recherche dichotomique et backtracking sur grille portés depuis le projet original en C#.",
     url: "https://boogle-demo.vercel.app/",
     sourceUrl: "https://github.com/PierreBoudraa/boogle-game",
-    screenshot: "/screenshots/BOOgle.png",
+    screenshot: "/screenshots/Boogle.png",
   },
 ];
 
