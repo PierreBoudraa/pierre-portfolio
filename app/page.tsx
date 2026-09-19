@@ -92,12 +92,21 @@ const shippedProjects: ShippedProject[] = [
   },
   {
     number: "10",
-    name: "Ultimate Tic-Tac-Toe — Moteur C++ & IA",
+    name: "Ultimate Tic-Tac-Toe - Moteur C++ & IA",
     stack: "C++ · Python · PyTorch · pybind11",
     description: "Moteur de jeu en bitboards, générateur de données par exploration exhaustive, réseau de neurones (PyTorch) réimplémenté à la main en C++ pour l'inférence, exposé à Python via pybind11.",
     url: "https://github.com/PierreBoudraa/ultimate-tictactoe",
     isCodeOnly: true,
     screenshot: "/screenshots/ultimate-tictactoe.png",
+  },
+  {
+    number: "11",
+    name: "BOOGLE",
+    stack: "Next.js · React · TypeScript pour la démo web, original en C#",
+    description: "Démo web interactive du jeu de mots Boggle : recherche dichotomique et backtracking sur grille portés depuis le projet original en C#.",
+    url: "https://boogle-demo.vercel.app/",
+    sourceUrl: "https://github.com/PierreBoudraa/boogle-game",
+    screenshot: "/screenshots/BOOgle.png",
   },
 ];
 
