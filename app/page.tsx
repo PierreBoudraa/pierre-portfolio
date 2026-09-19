@@ -108,6 +108,15 @@ const shippedProjects: ShippedProject[] = [
     sourceUrl: "https://github.com/PierreBoudraa/boogle-game",
     screenshot: "/screenshots/Boogle.png",
   },
+  {
+    number: "12",
+    name: "Jeu d'échecs - Moteur C# & Blazor",
+    stack: "C# · .NET 8 · Blazor WebAssembly, interface WPF d'origine",
+    description: "Jeu d'échecs jouable dans le navigateur : roque, prise en passant, promotion, échec et mat, pat. Le moteur C# de la version WPF est compilé en WebAssembly avec Blazor et s'exécute côté client, sans serveur.",
+    url: "https://pierreboudraa.github.io/mychessgame/",
+    sourceUrl: "https://github.com/PierreBoudraa/mychessgame",
+    screenshot: "/screenshots/chess.png",
+  },
 ];
 
 const roadmap = [
