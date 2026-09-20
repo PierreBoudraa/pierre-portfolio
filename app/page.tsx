@@ -117,10 +117,17 @@ const shippedProjects: ShippedProject[] = [
     sourceUrl: "https://github.com/PierreBoudraa/mychessgame",
     screenshot: "/screenshots/chess.png",
   },
+  {
+    number: "13",
+    name: "Détection d'objets en temps réel",
+    stack: "Next.js · TensorFlow.js · COCO-SSD",
+    description: "Détection d'objets via webcam, 100% côté client (aucun serveur). Modèle pré-entraîné COCO-SSD, très fiable sur les personnes (classe la mieux représentée dans le dataset d'entraînement), plus sensible au flou de mouvement sur les objets.",
+    url: "https://object-detection-murex.vercel.app/",
+    screenshot: "/screenshots/object-detection.png",
+  },
 ];
 
 const roadmap = [
-  { date: "À venir", title: "Détection d'objets", note: "Modèle vision (YOLO) connecté à une interface web." },
   { date: "À venir", title: "Agent IA", note: "Agent avec accès à des outils (recherche, calcul)." },
   { date: "À venir", title: "Mini-SaaS", note: "Un vrai produit, lancé et testé auprès d'utilisateurs." },
 ];
