@@ -15,8 +15,17 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pierre Boudraa — Portfolio",
-  description: "Étudiant ingénieur Data & IA, projets et roadmap.",
+  title: "Pierre Boudraa — Étudiant ingénieur Data & IA",
+  description:
+    "Étudiant ingénieur ESILV/EMLV, majeure Data & IA. Recherche un stage Data Science / Machine Learning (avril–juillet 2027). Projets : moteur C++ avec réseau de neurones, prédiction Ligue 1, jeu d'échecs Blazor.",
+  openGraph: {
+    title: "Pierre Boudraa — Étudiant ingénieur Data & IA",
+    description:
+      "Projets en Machine Learning, C++ et développement web. Recherche un stage Data Science / ML (avril–juillet 2027).",
+    type: "website",
+    locale: "fr_FR",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

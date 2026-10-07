@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-type ShippedProject = {
+const CV_URL = "/CV_Pierre_Boudraa.pdf";
+
+type Project = {
   number: string;
   name: string;
   stack: string;
@@ -12,9 +14,10 @@ type ShippedProject = {
   sourceUrl?: string;
   isCodeOnly?: boolean;
   screenshot: string;
+  metric?: string;
 };
 
-const shippedProjects: ShippedProject[] = [
+const projects: Project[] = [
   {
     number: "01",
     name: "Chronomètre",
@@ -76,10 +79,11 @@ const shippedProjects: ShippedProject[] = [
     number: "08",
     name: "Prédiction Ligue 1 - Machine Learning",
     stack: "Python · scikit-learn · pandas",
-    description: "Pipeline ML prédisant les résultats de Ligue 1 : rating Elo, features de forme récente, ensemble de modèles (Random Forest, HistGradientBoosting, Logistic Regression) validés par TimeSeriesSplit.",
+    description: "Pipeline ML prédisant les résultats de Ligue 1 à partir de 10 ans de données historiques : rating Elo, forme récente, ensemble de modèles (Random Forest, HistGradientBoosting, Logistic Regression) validés par TimeSeriesSplit.",
     url: "https://github.com/PierreBoudraa/ligue1-prediction",
     isCodeOnly: true,
     screenshot: "/screenshots/ligue1-prediction.png",
+    metric: "Random Forest : 59 % d'accuracy sur test temporel (saisons 2023-2024), soit +16 points vs baseline naïve (43 %).",
   },
   {
     number: "09",
@@ -94,7 +98,7 @@ const shippedProjects: ShippedProject[] = [
     number: "10",
     name: "Ultimate Tic-Tac-Toe - Moteur C++ & IA",
     stack: "C++ · Python · PyTorch · pybind11",
-    description: "Moteur de jeu en bitboards, générateur de données par exploration exhaustive, réseau de neurones (PyTorch) réimplémenté à la main en C++ pour l'inférence, exposé à Python via pybind11.",
+    description: "Moteur de jeu en bitboards, générateur de données par exploration exhaustive, réseau de neurones (PyTorch) dont le forward pass est réimplémenté à la main en C++ pour l'inférence, exposé à Python via pybind11.",
     url: "https://github.com/PierreBoudraa/ultimate-tictactoe",
     isCodeOnly: true,
     screenshot: "/screenshots/ultimate-tictactoe.png",
@@ -127,14 +131,27 @@ const shippedProjects: ShippedProject[] = [
   },
 ];
 
+// Projets mis en avant, dans l'ordre d'affichage (par numéro).
+const featuredNumbers = ["10", "08", "12", "07"];
+
+const featuredProjects = featuredNumbers
+  .map((n) => projects.find((p) => p.number === n))
+  .filter((p): p is Project => Boolean(p));
+
+const otherProjects = projects.filter((p) => !featuredNumbers.includes(p.number));
+
 const roadmap = [
   { date: "À venir", title: "Agent IA", note: "Agent avec accès à des outils (recherche, calcul)." },
   { date: "À venir", title: "Mini-SaaS", note: "Un vrai produit, lancé et testé auprès d'utilisateurs." },
 ];
 
 const stack = [
-  "Next.js", "React", "TypeScript", "Tailwind CSS", "Python", "C", "C#", "SQL", "FastAPI", "Git", "Vercel",
+  "Python", "C++", "C#", "SQL", "PyTorch", "scikit-learn", "pandas",
+  "Next.js", "React", "TypeScript", "Tailwind CSS", "FastAPI", "Git", "Vercel",
 ];
+
+const linkClass = "text-[#8b8a99] hover:text-[#ffb400] transition-colors text-sm";
+const monoStyle = { fontFamily: "var(--font-mono)" } as const;
 
 export default function Home() {
   const [typedText, setTypedText] = useState("");
@@ -158,19 +175,19 @@ export default function Home() {
       <div className="max-w-3xl mx-auto px-6">
         {/* Navigation */}
         <nav className="flex justify-between items-center py-8">
-  <span className="text-lg font-medium">Pierre BOUDRAÂ</span>
-  <div className="flex gap-6 text-sm" style={{ fontFamily: "var(--font-mono)" }}>
-    <a href="https://github.com/PierreBoudraa" target="_blank" rel="noopener noreferrer" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
-      GitHub
-    </a>
-    <a href="https://www.linkedin.com/in/pierre-boudraa-783534326" target="_blank" rel="noopener noreferrer" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
-      LinkedIn
-    </a>
-    <a href="mailto:pboudraa81@gmail.com" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
-  pboudraa81@gmail.com
-</a>
-  </div>
-</nav>
+          <span className="text-lg font-medium">Pierre BOUDRAÂ</span>
+          <div className="flex gap-6 text-sm" style={monoStyle}>
+            <a href="https://github.com/PierreBoudraa" target="_blank" rel="noopener noreferrer" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/pierre-boudraa-783534326" target="_blank" rel="noopener noreferrer" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
+              LinkedIn
+            </a>
+            <a href="mailto:pboudraa81@gmail.com" className="text-[#8b8a99] hover:text-[#f3efe6] transition-colors">
+              pboudraa81@gmail.com
+            </a>
+          </div>
+        </nav>
 
         {/* Hero */}
         <section className="py-20">
@@ -181,68 +198,104 @@ export default function Home() {
             J&apos;apprends en travaillant sur un projet à la fois, je suis actuellement{" "}
             <span className="text-[#f3efe6]">{typedText}</span>
           </p>
+          <p className="text-base text-[#8b8a99] max-w-xl mb-8">
+            En 4<sup>e</sup> année de double diplôme ESILV / EMLV, je recherche un{" "}
+            <span className="text-[#f3efe6]">stage de 4 mois (avril–juillet 2027) en Data Science / Machine Learning</span>.
+          </p>
+          <div className="flex flex-wrap gap-4 text-sm" style={monoStyle}>
+            <a
+              href={CV_URL}
+              download
+              className="px-4 py-2 rounded bg-[#ffb400] text-[#0f0f16] font-medium hover:opacity-90 transition-opacity"
+            >
+              Télécharger le CV
+            </a>
+            <a
+              href="#projets"
+              className="px-4 py-2 rounded border border-[#2a2a38] text-[#f3efe6] hover:bg-[#1b1b26] transition-colors"
+            >
+              Voir les projets
+            </a>
+          </div>
         </section>
 
-        {/* Projets déployés */}
-        <section className="py-16 border-t border-[#2a2a38]">
-          <p
-            className="text-sm text-[#59d9c4] mb-8"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Projets déployés : {shippedProjects.length}
+        {/* Projets phares */}
+        <section id="projets" className="py-16 border-t border-[#2a2a38]">
+          <p className="text-sm text-[#59d9c4] mb-8" style={monoStyle}>
+            Projets phares
           </p>
 
-          <div className="flex flex-col">
-            {shippedProjects.map((project) => (
-              <div
+          <div className="grid gap-6 sm:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <article
                 key={project.number}
-                className="group flex items-start gap-6 py-6 border-b border-[#2a2a38] hover:bg-[#1b1b26] transition-colors px-2 -mx-2 rounded"
+                className="group flex flex-col rounded border border-[#2a2a38] bg-[#14141c] hover:bg-[#1b1b26] transition-colors overflow-hidden"
               >
-                <span
-                  className="text-sm text-[#8b8a99] pt-1"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  {project.number}
-                </span>
-                <div className="relative w-28 h-20 shrink-0 rounded overflow-hidden bg-[#1b1b26] border border-[#2a2a38]">
+                <div className="relative w-full h-44 bg-[#1b1b26] border-b border-[#2a2a38]">
                   <Image
                     src={project.screenshot}
                     alt={`Aperçu du projet ${project.name}`}
                     fill
-                    sizes="112px"
+                    sizes="(min-width: 640px) 360px, 100vw"
                     className="object-contain"
                   />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-xl font-medium group-hover:text-[#ffb400] transition-colors">
-                      {project.name}
-                    </h3>
+                <div className="flex flex-col flex-1 p-5">
+                  <h3 className="text-lg font-medium mb-2 group-hover:text-[#ffb400] transition-colors">
+                    {project.name}
+                  </h3>
+                  <p className="text-sm text-[#8b8a99] mb-3">{project.description}</p>
+                  {project.metric && (
+                    <p className="text-sm text-[#f3efe6] mb-3 border-l-2 border-[#59d9c4] pl-3">
+                      {project.metric}
+                    </p>
+                  )}
+                  <p className="text-xs text-[#59d9c4] mb-4" style={monoStyle}>
+                    {project.stack}
+                  </p>
+                  <div className="flex gap-4 mt-auto">
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                      {project.isCodeOnly ? "Code" : "Démo"}
+                    </a>
+                    {project.sourceUrl && (
+                      <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                        Code
+                      </a>
+                    )}
                   </div>
-                  <p className="text-sm text-[#8b8a99] mb-2">{project.description}</p>
-                  <p
-                    className="text-xs text-[#59d9c4]"
-                    style={{ fontFamily: "var(--font-mono)" }}
-                  >
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Autres projets */}
+        <section className="py-16 border-t border-[#2a2a38]">
+          <p className="text-sm text-[#8b8a99] mb-8" style={monoStyle}>
+            Autres projets : {otherProjects.length}
+          </p>
+
+          <div className="flex flex-col">
+            {otherProjects.map((project) => (
+              <div
+                key={project.number}
+                className="group flex items-start justify-between gap-6 py-4 border-b border-[#2a2a38] hover:bg-[#1b1b26] transition-colors px-2 -mx-2 rounded"
+              >
+                <div className="flex-1">
+                  <h3 className="text-base font-medium mb-1 group-hover:text-[#ffb400] transition-colors">
+                    {project.name}
+                  </h3>
+                  <p className="text-sm text-[#8b8a99] mb-1">{project.description}</p>
+                  <p className="text-xs text-[#59d9c4]" style={monoStyle}>
                     {project.stack}
                   </p>
                 </div>
-                <div className="flex flex-col gap-1 items-end pt-1 shrink-0">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#8b8a99] hover:text-[#ffb400] transition-colors text-sm"
-                  >
+                <div className="flex flex-col gap-1 items-end shrink-0">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
                     {project.isCodeOnly ? "Code" : "Démo"}
                   </a>
                   {project.sourceUrl && (
-                    <a
-                      href={project.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#8b8a99] hover:text-[#ffb400] transition-colors text-sm"
-                    >
+                    <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
                       Code
                     </a>
                   )}
@@ -254,20 +307,14 @@ export default function Home() {
 
         {/* Roadmap */}
         <section className="py-16 border-t border-[#2a2a38]">
-          <p
-            className="text-sm text-[#ffb400] mb-8"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
+          <p className="text-sm text-[#ffb400] mb-8" style={monoStyle}>
             Projets à venir :
           </p>
 
           <div className="flex flex-col gap-6">
             {roadmap.map((item, i) => (
               <div key={i} className="flex items-start gap-6">
-                <span
-                  className="text-xs text-[#8b8a99] pt-1 w-16 shrink-0"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
+                <span className="text-xs text-[#8b8a99] pt-1 w-16 shrink-0" style={monoStyle}>
                   {item.date}
                 </span>
                 <div>
@@ -281,18 +328,15 @@ export default function Home() {
 
         {/* Stack */}
         <section className="py-16 border-t border-[#2a2a38]">
-          <p
-            className="text-sm text-[#8b8a99] mb-6"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Compétences techniques : 
+          <p className="text-sm text-[#8b8a99] mb-6" style={monoStyle}>
+            Compétences techniques :
           </p>
           <div className="flex flex-wrap gap-3">
             {stack.map((tech) => (
               <span
                 key={tech}
                 className="text-sm px-3 py-1.5 bg-[#1b1b26] rounded text-[#f3efe6]"
-                style={{ fontFamily: "var(--font-mono)" }}
+                style={monoStyle}
               >
                 {tech}
               </span>
