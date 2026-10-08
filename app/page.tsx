@@ -276,21 +276,33 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col">
-            {otherProjects.map((project) => (
+            {otherProjects.map((project, index) => (
               <div
                 key={project.number}
-                className="group flex items-start justify-between gap-6 py-4 border-b border-[#2a2a38] hover:bg-[#1b1b26] transition-colors px-2 -mx-2 rounded"
+                className="group flex items-start gap-6 py-6 border-b border-[#2a2a38] hover:bg-[#1b1b26] transition-colors px-2 -mx-2 rounded"
               >
+                <span className="text-sm text-[#8b8a99] pt-1" style={monoStyle}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="relative w-28 h-20 shrink-0 rounded overflow-hidden bg-[#1b1b26] border border-[#2a2a38]">
+                  <Image
+                    src={project.screenshot}
+                    alt={`Aperçu du projet ${project.name}`}
+                    fill
+                    sizes="112px"
+                    className="object-contain"
+                  />
+                </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-medium mb-1 group-hover:text-[#ffb400] transition-colors">
+                  <h3 className="text-xl font-medium mb-1 group-hover:text-[#ffb400] transition-colors">
                     {project.name}
                   </h3>
-                  <p className="text-sm text-[#8b8a99] mb-1">{project.description}</p>
+                  <p className="text-sm text-[#8b8a99] mb-2">{project.description}</p>
                   <p className="text-xs text-[#59d9c4]" style={monoStyle}>
                     {project.stack}
                   </p>
                 </div>
-                <div className="flex flex-col gap-1 items-end shrink-0">
+                <div className="flex flex-col gap-1 items-end pt-1 shrink-0">
                   <a href={project.url} target="_blank" rel="noopener noreferrer" className={linkClass}>
                     {project.isCodeOnly ? "Code" : "Démo"}
                   </a>
