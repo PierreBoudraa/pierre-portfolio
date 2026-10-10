@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const CV_URL = "/CV_Pierre_Boudraa.pdf";
+const CV_URL = "/CV_Pierre_BOUDRAA_LinkedIn.pdf";
 
 type Project = {
   number: string;
