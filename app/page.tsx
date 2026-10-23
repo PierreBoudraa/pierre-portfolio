@@ -129,6 +129,15 @@ const projects: Project[] = [
     url: "https://object-detection-murex.vercel.app/",
     screenshot: "/screenshots/object-detection.png",
   },
+  {
+    number: "14",
+    name: "Undercover Infinite",
+    stack: "Next.js · React · TypeScript · Tailwind CSS",
+    description: "Jeu de soirée Undercover jouable sur un seul téléphone : thèmes de mots générés par IA, rôle Mr White, phase de vote avec élimination et conditions de victoire.",
+    url: "https://undercoverinfinite.vercel.app/",
+    sourceUrl: "https://github.com/PierreBoudraa/undercoverinfinite",
+    screenshot: "/screenshots/UndercoverInfinite.png",
+  },
 ];
 
 // Projets mis en avant, dans l'ordre d'affichage (par numéro).
